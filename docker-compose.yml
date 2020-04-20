@@ -1,0 +1,50 @@
+version: "3.7"
+
+
+services:
+
+  nginx:
+
+    image: nginx
+    
+    container_name: manu_nginx
+
+    ports:
+
+      - "80:80"
+    
+    volumes: 
+
+      - ./index.html:/usr/share/nginx/html/index.html
+
+  mysql:
+
+    image: mysql
+  
+    container_name: manu_mysql
+
+    ports:
+
+      - "3306:3306"
+
+    networks: 
+
+      - lorem
+
+    environment: 
+
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+
+    volumes: 
+
+      - mysql:/var/lib/mysql
+
+networks: 
+
+  lorem:
+
+    driver: bridge
+
+volumes: 
+
+  mysql:
